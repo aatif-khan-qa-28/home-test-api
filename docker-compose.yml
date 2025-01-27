@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  demo-app:
+    image: automaticbytes/demo-app
+    container_name: demo-app
+    ports:
+      - "3100:3100"
+
+  karate-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: karate-tests
+    depends_on:
+      - demo-app
+    volumes:
+      - ./src:/app/src
+      - ./target:/app/target
+    command: ["mvn", "test"]
