@@ -120,6 +120,14 @@ docker run -p 3100:3100 automaticbytes/demo-app
 ```
 mvn test
 ```
+
+---
+## **Project Demo**
+
+
+https://github.com/user-attachments/assets/5444163a-923e-4087-a4b0-6f4647d6d007
+
+
 ---
 ## **Troubleshooting**
 - **If the containers fail to start:**
