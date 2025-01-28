@@ -1,11 +1,11 @@
-# Stage 1: Build the project using Maven
+# Stage 1: Build the project using Maven with JDK
 FROM maven:3.8.6-openjdk-11-slim AS build
 
 # Set the working directory
 WORKDIR /app
 
 # Copy the pom.xml and other necessary files
-COPY pom.xml .
+COPY pom.xml ./
 
 # Download dependencies (this avoids downloading them in every build)
 RUN mvn dependency:go-offline
@@ -16,20 +16,23 @@ COPY . .
 # Compile and package the project (skip tests during the build stage)
 RUN mvn clean package -DskipTests
 
-
-# Stage 2: Run the tests using Maven (Ensure Maven is available in this stage)
+# Stage 2: Run the tests using Maven with JDK
 FROM maven:3.8.6-openjdk-11-slim
 
-# Set the working directory inside the container
+# Set the working directory
 WORKDIR /app
 
-# Copy the built files (target directory, etc.) from the previous stage
+# Install curl and wait-for-it.sh
+RUN apt-get update && apt-get install -y \
+    curl \
+    && curl -Lo /app/wait-for-it.sh https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh \
+    && chmod +x /app/wait-for-it.sh
+
+# Copy the built files from the previous stage
 COPY --from=build /app /app
 
-# Ensure Maven is installed in the container (check for the "mvn" command)
-RUN mvn --version
+# Ensure Maven and JDK are available in the container
+RUN java -version && mvn --version
 
-
-
-# Set the default command to run tests
-CMD ["mvn", "test"]
+# Set the default command to run tests and wait for the demo-app service
+CMD ["/app/wait-for-it.sh", "demo-app:3100", "--", "mvn", "test"]

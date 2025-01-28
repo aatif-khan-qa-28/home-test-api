@@ -6,6 +6,8 @@ services:
     container_name: demo-app
     ports:
       - "3100:3100"
+    networks:
+      - app-network
 
   karate-tests:
     build:
@@ -14,7 +16,16 @@ services:
     container_name: karate-tests
     depends_on:
       - demo-app
+    environment:
+      - karate.env=docker  # This will set the environment to "docker"
     volumes:
       - ./src:/app/src
       - ./target:/app/target
-    command: ["mvn", "test"]
+    networks:
+      - app-network
+    command: ["/app/wait-for-it.sh", "demo-app:3100", "--", "mvn", "test", "-Dkarate.env=docker"]
+
+
+networks:
+  app-network:
+    driver: bridge

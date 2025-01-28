@@ -1,14 +1,14 @@
 function fn() {
-  var env = karate.env;
-  if (!env) {
-    env = "dev";
+  var config = {};
+
+  if (karate.env == 'docker') {
+    // Set the base URL for the "docker" environment
+    config.baseUrl = 'http://demo-app:3100/api';
+  } else {
+    // Default to localhost if not in "docker" environment
+    config.baseUrl = 'http://localhost:3100/api';
   }
-  var config = {
-    env: env,
-    baseUrl: "http://localhost:3100/api",
-  };
-  if (env == "dev") {
-  } else if (env == "e2e") {
-  }
+
+  // Return the configuration object
   return config;
 }
