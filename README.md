@@ -93,8 +93,6 @@ home-test-api/
 │   │   ├── resources
 │   │   │   ├── features
 │   │   │   │   └── inventory.feature  # Karate feature file with test scenarios
-│   │   │   ├── data
-│   │   │   │   └── inventory.json     # Test data in JSON format
 │   │   │   └── logback-test.xml       # Logging configuration
 
 ```
@@ -106,11 +104,7 @@ The `docker-compose.yml` file defines two services:
 
 1. `demo-app`: Runs the demo API on http://localhost:3100.
 2. `karate-tests`: Executes the Karate tests.
-   
-**Test Data Management**
-
-All dynamic test data is stored in `src/test/resources/data/inventory.json`. This promotes flexibility and reduces hardcoding in the feature file.
-
+  
 **Feature File**
 
 The `inventory.feature` file defines all test scenarios using Karate's BDD syntax. Each scenario dynamically fetches data from the JSON file.
