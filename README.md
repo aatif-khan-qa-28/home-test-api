@@ -125,8 +125,11 @@ mvn test
 
 ## **Test Results**
 
+Sample karate-summary HTML reports:
 
-https://github.com/user-attachments/assets/5444163a-923e-4087-a4b0-6f4647d6d007
+<img width="954" alt="api-report-1" src="https://github.com/user-attachments/assets/710c37f7-787e-4b3e-95c8-6baa7aeffd9d" />
+
+<img width="767" alt="api-report-2" src="https://github.com/user-attachments/assets/870e8fb8-f464-4d1f-ac16-b14949b6a666" />
 
 
 ---
