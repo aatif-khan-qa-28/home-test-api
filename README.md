@@ -42,8 +42,7 @@ This repository contains an automated testing framework built with [Karate](http
 
 ## **Prerequisites**
 
-- **Docker** (version 20.10+)
-- **Docker Compose** (version 2.0+)
+- **Docker** 
 - **Java** (version 8 or higher)
 - **Maven** (version 3.6+)
 
@@ -70,6 +69,10 @@ This will:
 ### **Step 3: View Test Results**
 The test execution logs will appear in the console. Upon successful completion, the logs will indicate whether all tests passed.
 
+`target` folder will have karate summary report on the below path:
+ `/target/karate-reports/karate-summary.html`
+
+
 ### **Step 4: Stop the Containers**
 Once the tests are complete, stop the running containers:
 ```bash
@@ -79,22 +82,19 @@ docker-compose down
 ## **Project Structure**
 ```
 home-test-api/
-├── docker-compose.yml      # Docker Compose configuration
-├── Dockerfile              # Dockerfile for Karate test container
-├── pom.xml                 # Maven configuration
-├── README.md               # Documentation
+├── docker-compose.yml                   # Docker Compose configuration
+├── Dockerfile                           # Dockerfile for Karate test container
+├── pom.xml                              # Maven configuration
+├── README.md                            # Documentation
+├── karate-config.js                     # Config file to define baseUrl and other configurations
 ├── src
-│   ├── test
-│   │   ├── java
-│   │   │   └── com
-│   │   │       └── home
-│   │   │           └── test
-│   │   │               └── InventoryTestRunner.java  # Karate runner class
-│   │   ├── resources
-│   │   │   ├── features
-│   │   │   │   └── inventory.feature  # Karate feature file with test scenarios
-│   │   │   └── logback-test.xml       # Logging configuration
-
+    └──  test
+        └──  java
+            └── com
+                └── home
+                    └── features/        # Directory for all the feature files
+                    └── utils/           # Directory for JSON schmas and test data
+                    └── TestRunner.java  # Runner class to execute all the test cases
 ```
 ---
 ## **How it Works**
@@ -107,7 +107,7 @@ The `docker-compose.yml` file defines two services:
   
 **Feature File**
 
-The `inventory.feature` file defines all test scenarios using Karate's BDD syntax. Each scenario dynamically fetches data from the JSON file.
+The `src/test/java/com/home/features` directory defines all test scenarios using Karate's BDD syntax. Each scenario dynamically fetches data from the JSON file.
 
 ---
 ## **Running Locally (Without Docker)**
@@ -122,7 +122,8 @@ mvn test
 ```
 
 ---
-## **Project Demo**
+
+## **Test Results**
 
 
 https://github.com/user-attachments/assets/5444163a-923e-4087-a4b0-6f4647d6d007
@@ -139,15 +140,14 @@ https://github.com/user-attachments/assets/5444163a-923e-4087-a4b0-6f4647d6d007
 - **If tests fail:**
 
 -  Verify the Demo API is running on `http://localhost:3100`.
--  Ensure the test data in `inventory.json` matches the API's expected format.
+-  Ensure the test data in `src/test/java/com/home/utils` matches the API's expected format.
 ---
 ## **Resource**
 - **[Karate Documentation](https://github.com/karatelabs/karate)**
 - **[Docker Documentation](https://docs.docker.com/get-started/)**
  ---
 ## **Author**
-Created by **[Mohd Aatif Khan]()**. For inquiries, please contact on my **[Email](khan.aatif2807@gmail.com)** / **[Linkedin](https://www.linkedin.com/in/mohdaatifkhan)**.
-
+Created by **[Mohd Aatif Khan]()**.
 ---
 ## **License**
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
