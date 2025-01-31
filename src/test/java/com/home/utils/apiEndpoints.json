@@ -1,0 +1,5 @@
+{
+  "inventory": "inventory",
+  "inventory-filter": "inventory/filter",
+  "inventory-add": "inventory/add"
+}

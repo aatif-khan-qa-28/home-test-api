@@ -10,34 +10,7 @@ This repository contains an automated testing framework built with [Karate](http
 - **Dockerized Setup**: Includes `docker-compose` for easy setup and containerization.
 - **Comprehensive Scenarios**: Covers a variety of API tests, including positive, negative, and edge cases.
 - **Dynamic Data**: Test data is maintained in JSON format, promoting flexibility and maintainability.
-
----
-
-## **Test Scenarios Covered**
-
-1. **Get All Menu Items**
-    - Validate that the response contains at least 9 items.
-    - Ensure each item includes `id`, `name`, `price`, and `image`.
-
-2. **Filter by ID**
-    - Validate the response for `id=3` matches the expected item (`Baked Rolls x 8`).
-
-3. **Add Item for Non-Existent ID**
-    - Add a new menu item with ID `10`.
-    - Validate response status code is `200`.
-
-4. **Add Item for Existing ID**
-    - Attempt to add a menu item with an existing ID (`10`).
-    - Validate response status code is `400`.
-
-5. **Add Item with Missing Information**
-    - Try adding an item without all required fields.
-    - Validate response status code is `400`.
-    - Ensure the response contains the message: `"Not all requirements are met"`.
-
-6. **Validate Recent Addition**
-    - Confirm that the newly added item (`ID 10`) is present in the inventory.
-
+- 
 ---
 
 ## **Prerequisites**
